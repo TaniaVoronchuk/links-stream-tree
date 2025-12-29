@@ -1,7 +1,7 @@
 "use client";
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Transition } from 'framer-motion';
 import logo from "../public/logo.png";
 
 interface Bauble {
@@ -28,6 +28,12 @@ export const ChristmasTree = () => {
   "No Spam", "Trust Flow", "Happy New Year 2026", "Max Traffic", "DA 90+", "Happy New Year 2026",
   "SERP Stability", "Strong E-E-A-T", "High CTR", "AI Visibility", "LLM Mentions", "Brand Citations",
 ];
+
+const syncTransition: Transition = {
+    duration: 2.5,
+    repeat: Infinity,
+    ease: "easeInOut"
+  };
 
   const spiralPath = useMemo<string>(() => {
     const points: string[] = [];
@@ -67,8 +73,8 @@ export const ChristmasTree = () => {
 
     const isLeft = Math.random() > 0.5;
     const xPos = isLeft 
-      ? (Math.random() * 25 + 5) + "%" 
-      : (Math.random() * 25 + 50) + "%";
+  ? (Math.random() * 25 + 5) + "%" 
+  : (Math.random() * 25 + 50) + "%";
 
     const newWish = {
       id: Date.now() + Math.random(),
@@ -146,7 +152,7 @@ export const ChristmasTree = () => {
             strokeWidth="2"
             style={{ filter: 'drop-shadow(0 0 8px white)' }}
             animate={{ opacity: [0.7, 1, 0.7] }}
-            transition={{ repeat: Infinity, duration: 2 }}
+            transition={syncTransition}
           />
           <path
             d={spiralPath}
@@ -173,14 +179,29 @@ export const ChristmasTree = () => {
         </motion.svg>
       </div>
       <div className="flex flex-col items-center z-20 mt-6">
-        <button
-          onClick={addAction}
-          className="cursor-pointer px-10 py-3 text-white font-medium hover:text-cyan-400 transition-all tracking-widest active:scale-95"
-          style={{ textShadow: '0 0 10px rgba(255,255,255,0.3)' }}
-        >
-          Start the Magic
-        </button>
-
+    <motion.button
+     onClick={addAction}
+     className="cursor-pointer px-10 py-3 text-white font-medium tracking-[0.2em] uppercase text-sm select-none"
+     animate={{ 
+     opacity: [0.7, 1, 0.7],
+     textShadow: [
+      "0 0 10px rgba(34, 211, 238, 0.4), 0 0 20px rgba(34, 211, 238, 0.2)",
+      "0 0 25px rgba(34, 211, 238, 0.9), 0 0 45px rgba(34, 211, 238, 0.5), 0 0 60px rgba(34, 211, 238, 0.3)",
+      "0 0 10px rgba(34, 211, 238, 0.4), 0 0 20px rgba(34, 211, 238, 0.2)"
+    ]
+    }}
+     transition={syncTransition}
+     whileHover={{ 
+     color: "#22d3ee",
+     textShadow: "0 0 30px rgba(34, 211, 238, 1), 0 0 50px rgba(34, 211, 238, 0.8), 0 0 70px rgba(34, 211, 238, 0.4)"
+     }}
+     whileTap={{ 
+     color: "#fff",
+     textShadow: "0 0 40px rgba(255, 255, 255, 1), 0 0 60px rgba(34, 211, 238, 1)"
+    }}
+    >
+     {baubles.length === 0 ? "Start the Magic" : "Add More Magic"}
+     </motion.button>
         {baubles.length > 0 && (
           <button
             onClick={() => { setBaubles([]); setWishes([]); }}
@@ -192,5 +213,4 @@ export const ChristmasTree = () => {
       </div>
     </div>
   );
-
 }
