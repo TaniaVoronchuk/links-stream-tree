@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://links-stream-tree.vercel.app'),
   title: "Links-Stream Magic Tree 🎄",
   description: "Create your own Christmas magic with Links-Stream",
 
