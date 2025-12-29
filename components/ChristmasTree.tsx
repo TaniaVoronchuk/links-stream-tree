@@ -68,7 +68,7 @@ export const ChristmasTree = () => {
     const isLeft = Math.random() > 0.5;
     const xPos = isLeft 
       ? (Math.random() * 25 + 5) + "%" 
-      : (Math.random() * 25 + 70) + "%";
+      : (Math.random() * 25 + 50) + "%";
 
     const newWish = {
       id: Date.now() + Math.random(),
@@ -192,4 +192,5 @@ export const ChristmasTree = () => {
       </div>
     </div>
   );
+
 }
