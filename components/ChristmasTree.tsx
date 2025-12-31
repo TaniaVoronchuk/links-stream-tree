@@ -178,7 +178,7 @@ const syncTransition: Transition = {
           </AnimatePresence>
         </motion.svg>
       </div>
-      <div className="flex flex-col items-center z-20 mt-6">
+      <div className="flex flex-col items-center z-20">
     <motion.button
      onClick={addAction}
      className="cursor-pointer px-10 py-3 text-white font-medium tracking-[0.2em] uppercase text-sm select-none"
@@ -214,3 +214,4 @@ const syncTransition: Transition = {
     </div>
   );
 }
+
